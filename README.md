@@ -59,10 +59,11 @@
 - productionprocess.csv
 - process_equipment.csv
 - process_materials.csv
+- process_containers.csv
 - ועוד...
 
 ### ✅ שיטה 3: SQL ידני
-קובץ `insertTables.sql` כולל שלוש פקודות `INSERT` לכל טבלה.
+קובץ `insertTables.sql` 
 
 ---
 
