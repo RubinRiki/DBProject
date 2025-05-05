@@ -32,7 +32,7 @@ BEGIN;
 
 -- הכנסת עובד חדש
 INSERT INTO employee (employeeid, role, name)
-VALUES (888, 'Manager', 'CommitGuy');
+VALUES (888, 'qa', 'garry');
 
 -- בדיקה שהעובד נוסף
 SELECT * FROM employee WHERE employeeid = 888;

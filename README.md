@@ -72,8 +72,10 @@
 שם הקובץ: `backup_22042025.backup`  
 נמצא בתיקייה `שלב א`.
 
+DBProject/ ├── שלב א/ │ ├── createTables.sql │ ├── dropTables.sql │ ├── insertTables.sql │ ├── selectAll.sql │ ├── backup_22042025.backup │ ├── ERD/ │ ├── DSD/ │ ├── Programing/ │ ├── DataImportFiles/ │ └── mockarooFiles/
+
 ---
-## 🧩 שלב ב – שאילתות, אילוצים ופעולות בסיס נתונים
+# 🧩 שלב ב – שאילתות, אילוצים ופעולות בסיס נתונים
 ## 📄 קבצים שנוצרו:
 Queries.sql – קובץ עם שאילתות SELECT / UPDATE / DELETE.
 Constraints.sql – קובץ עם שלושה אילוצים (ALTER TABLE).
@@ -158,30 +160,59 @@ backup2.backup – גיבוי מעודכן לאחר שלב ב.
 
 3️⃣ השאילתה מוחקת תהליכי ייצור שסומנו בטעות עם תאריך סיום בעתיד, מכיוון שבמערכת תקינה תאריך הסיום לא אמור להיות מאוחר מהתאריך הנוכחי.
 
-פעולות ROLLBACK ו־COMMIT
-⚙️ עדכון זמני עם ROLLBACK
-הכנסנו שורה חדשה לטבלת raw_materials עם מזהה זמני, מבלי לבצע COMMIT. לאחר מכן בוצע ROLLBACK והשורה נעלמה – דבר הממחיש ביטול פעולה שטרם אושרה.
 
+## שימוש ב־ROLLBACK
+תיאור:
+ביצעתי הכנסת עובד זמני (ID = 999) בתוך טרנזקציה שלא אושרה. הפעולה בוטלה עם ROLLBACK, ולכן העובד לא נשמר בבסיס הנתונים.
+
+🔧 שלבי הפעולה:
+בדיקת קיום מקדים:
+![בדיקת קיום מקדים:](שלב%20ב/images/rolb.JPG) 
+
+תחילת טרנזקציה + הוספה:
 BEGIN;
-INSERT INTO raw_materials (materialid_, name_, quantityavailable_)
-VALUES (9999, 'טסט ביטול', 100);
--- בדיקת מצב הטבלה (השורה מופיעה)
+
+INSERT INTO employee (employeeid, role, name)
+VALUES (999, 'Tester', 'Temp');
+בדיקה לפני ביטול:
+![בדיקת קיום מקדים:](שלב%20ב/images/rol.JPG) 
+
+ביטול הפעולה: 
 ROLLBACK;
--- בדיקת מצב הטבלה מחדש (השורה נעלמה)
-✅ עדכון ואישור עם COMMIT
-בוצע שינוי על חומר גלם קיים, ולאחר מכן אושר באמצעות COMMIT. הבדיקה מראה כי הנתונים נשמרו לאחר אישור סופי.
+בדיקה אחרי ביטול:
+![בדיקת קיום מקדים:](שלב%20ב/images/rola.JPG) 
+
+
+## שימוש ב־COMMIT
+תיאור:
+ביצעתי הכנסת עובד חדש (ID = 888) בתוך טרנזקציה שאושרה עם COMMIT, ולכן הנתונים נשמרו בבסיס הנתונים לצמיתות.
+
+🔧 שלבי הפעולה:
+בדיקת קיום מקדים:
+SELECT * FROM employee WHERE employeeid = 888;
+![בדיקת קיום מקדים:](שלב%20ב/images/comB.JPG) 
+
+תחילת טרנזקציה + הוספה:
+
 
 BEGIN;
-UPDATE raw_materials
-SET quantityavailable_ = quantityavailable_ + 15
-WHERE materialid_ = 1001;
- 
-תמונה: 
 
+INSERT INTO employee (employeeid, role, name)
+VALUES (888, 'qa', 'garry');
+בדיקה לפני אישור:
+SELECT * FROM employee WHERE employeeid = 888;
+![בדיקת קיום מקדים:](שלב%20ב/images/com.JPG) 
+
+
+אישור הפעולה:
 COMMIT;
-תמונה: 
+בדיקה לאחר אישור:
+SELECT * FROM employee WHERE employeeid = 888;
+![בדיקת קיום מקדים:](שלב%20ב/images/comA.JPG) 
 
-🧱 אילוצים (Constraints)
+
+
+##  אילוצים (Constraints)
 1️⃣ אילוץ NOT NULL בטבלת employee
 בוצע על העמודה name כדי לוודא שלא ניתן להוסיף עובד ללא שם.
 
@@ -210,4 +241,3 @@ ADD CONSTRAINT fk_employee FOREIGN KEY (employeeid) REFERENCES employee(employee
  ![אילוץ ראשון](שלב%20ב/images/con3E.JPG)
 ## 🗂️ מבנה התיקיות:
 
-DBProject/ ├── שלב א/ │ ├── createTables.sql │ ├── dropTables.sql │ ├── insertTables.sql │ ├── selectAll.sql │ ├── backup_22042025.backup │ ├── ERD/ │ ├── DSD/ │ ├── Programing/ │ ├── DataImportFiles/ │ └── mockarooFiles/
