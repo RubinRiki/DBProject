@@ -74,7 +74,8 @@
 
 DBProject/ ├── שלב א/ │ ├── createTables.sql │ ├── dropTables.sql │ ├── insertTables.sql │ ├── selectAll.sql │ ├── backup_22042025.backup │ ├── ERD/ │ ├── DSD/ │ ├── Programing/ │ ├── DataImportFiles/ │ └── mockarooFiles/
 
----## 🧩 שלב ב – שאילתות, אילוצים ופעולות בסיס נתונים
+
+## 🧩 שלב ב – שאילתות, אילוצים ופעולות בסיס נתונים
 ## 📄 קבצים שנוצרו:
 Queries.sql – קובץ עם שאילתות SELECT / UPDATE / DELETE.  
 Constraints.sql – קובץ עם שלושה אילוצים (ALTER TABLE).  
@@ -90,70 +91,68 @@ backup2.backup – גיבוי מעודכן לאחר שלב ב.
 1️⃣ מספר עובדים וכמות תהליכים שהובילו  
 מטרת השאילתה: להציג עבור כל עובד את מספר תהליכי הייצור שהוא הוביל.  
 מאפשר לדעת מי מהעובדים יותר פעיל בתהליכים – אינדיקציה לניסיון או לעומס עבודה.  
-<img src="שלב ב/images/select1.jpg" width="480" height="300"/>
+<img src="שלב ב/images/select1.jpg" width="300" height="200"/>
 
 2️⃣ מוצרים סופיים שבוקבקו ברבעון הראשון  
 מטרת השאילתה: לשלוף מוצרים סופיים שבוקבקו בין ינואר למרץ, כולל תאריך הביקבוק וכמות הבקבוקים.  
 עוזר לנתח זמני ייצור ולבדוק תפוקה לפי רבעון.  
-<img src="שלב ב/images/select2.jpg" width="480" height="300"/>
+<img src="שלב ב/images/select2.jpg" width="300" height="200"/>
 
 3️⃣ כמות חומרי גלם בכל תהליך  
 מטרת השאילתה: לבדוק כמה סוגים שונים של חומרי גלם שימשו בכל תהליך ייצור.  
 שימושי לבדיקת מורכבות התהליכים – תהליך עם יותר חומרים עשוי להיות מורכב יותר.  
-<img src="שלב ב/images/select3.jpg" width="480" height="300"/>
+<img src="שלב ב/images/select3.jpg" width="300" height="200"/>
 
 4️⃣ תהליכים לפי סוג ענבים  
 מטרת השאילתה: להציג את כל התהליכים שבוצעו לפי סוג הענבים בהם נעשה שימוש.  
 מאפשר מעקב אחר אילו ענבים משמשים באילו תהליכים – רלוונטי לניתוח איכות או התאמה.  
-<img src="שלב ב/images/select4.jpg" width="480" height="300"/>
+<img src="שלב ב/images/select4.jpg" width="300" height="200"/>
 
 5️⃣ כמות הבקבוקים הסופיים לפי סוג ענבים  
 מטרת השאילתה: לסכום את מספר הבקבוקים שיוצרו לפי סוג הענבים.  
 עוזר לזהות אילו סוגי ענבים מובילים לתפוקה גבוהה יותר.  
-<img src="שלב ב/images/select5.jpg" width="480" height="300"/>
+<img src="שלב ב/images/select5.jpg" width="300" height="200"/>
 
 6️⃣ תהליכים שהחלו בפברואר  
 מטרת השאילתה: למצוא תהליכים שהחלו בחודש פברואר, כולל סוג הענבים ושם העובד שהוביל אותם.  
 מאפשר ניתוח עונתי של התחלת תהליכים ומעקב אחרי פעילות עובדים לפי חודש.  
-<img src="שלב ב/images/select6.jpg" width="480" height="300"/>
+<img src="שלב ב/images/select6.jpg" width="300" height="200"/>
 
 7️⃣ תהליכים עם הציוד שבו השתמשו  
 מטרת השאילתה: להציג את הציוד שנעשה בו שימוש בכל תהליך, כולל סוג הציוד והסטטוס שלו.  
 מאפשר לבדוק תקלות, עומס או תחזוקה לפי שימוש בציוד.  
-<img src="שלב ב/images/select7.jpg" width="480" height="300"/>
+<img src="שלב ב/images/select7.jpg" width="300" height="200"/>
 
 8️⃣ תהליכי ייצור לפי חודש  
 מטרת השאילתה: לקבץ את תהליכי הייצור לפי חודש התחלה ולספור כמה היו בכל חודש.  
 מספק תמונת מצב של עומס עבודה לאורך זמן, רלוונטי לתכנון משאבים.  
-<img src="שלב ב/images/select8.jpg" width="480" height="300"/>
+<img src="שלב ב/images/select8.jpg" width="300" height="200"/>
 
 ## שאילתות UPDATE
 
 1️⃣ עדכון סוג היין (winetype_) לפי סוג הענבים  
 מעדכן את שדה winetype_ בטבלת finalproduct_ עבור מוצרים שעברו את כל 4 שלבי הייצור. נלקח ענב כלשהו מתוך התהליך.  
-<img src="שלב ב/images/update1aa.jpg" width="480" height="300"/> <img src="שלב ב/images/update1a.jpg" width="480" height="300"/>
+<img src="שלב ב/images/update1aa.jpg" width="300" height="200"/> <img src="שלב ב/images/update1a.jpg" width="300" height="200"/>
 
 2️⃣ סגירת תהליך – עדכון enddate_ להיום  
 עבור מוצרים שעברו את כל סוגי התהליך ועדיין אין להם enddate_.  
-<img src="שלב ב/images/update2aa.jpg" width="480" height="300"/> <img src="שלב ב/images/update2a.jpg" width="480" height="300"/>
+<img src="שלב ב/images/update2aa.jpg" width="300" height="200"/> <img src="שלב ב/images/update2a.jpg" width="300" height="200"/>
 
 3️⃣ הורדת מלאי חומרי גלם  
 אם הסכום הכולל של שימוש בחומר מסוים עבר 50 יחידות – מפחיתים 10 מהמלאי.  
-<img src="שלב ב/images/update3aa.jpg" width="480" height="300"/> <img src="שלב ב/images/update3a.jpg" width="480" height="300"/>
+<img src="שלב ב/images/update3aa.jpg" width="300" height="200"/> <img src="שלב ב/images/update3a.jpg" width="300" height="200"/>
 
-## שאילתות DELETE
-התמונות יהיו אחת ליד השניה- לפני, הרצה ותהליך
+## שאילתות DELETE  
+התמונות יהיו אחת ליד השנייה – לפני, הרצה ותהליך
 
-1️⃣ השאילתה מוחקת תהליכי ייצור שהסתיימו לפני יותר מ־10 שנים, במטרה לנקות תהליכים ישנים שכבר אינם רלוונטיים למעקב שוטף. 
-<img src="שלב ב/images/delete1b.jpg" width="480" height="300"/> <img src="שלב ב/images/delete1.jpg" width="480" height="300"/> <img src="שלב ב/images/delete1a.jpg" width="480" height="300"/> 
+1️⃣ השאילתה מוחקת תהליכי ייצור שהסתיימו לפני יותר מ־10 שנים, במטרה לנקות תהליכים ישנים שכבר אינם רלוונטיים למעקב שוטף.  
+<img src="שלב ב/images/delete1b.jpg" width="300" height="200"/> <img src="שלב ב/images/delete1.jpg" width="300" height="200"/> <img src="שלב ב/images/delete1a.jpg" width="300" height="200"/>  
 
-2️⃣ השאילתה מוחקת חומרי גלם שהכמות הזמינה שלהם קטנה מ־1, ושלא נעשה בהם שימוש בשנתיים האחרונות, כדי לשמור על מלאי מעודכן ויעיל. 
-<img src="שלב ב/images/delete2b.jpg" width="480" height="300"/> <img src="שלב ב/images/delete2.jpg" width="480" height="300"/> <img src="שלב ב/images/delete2a.jpg" width="480" height="300"/> 
+2️⃣ השאילתה מוחקת חומרי גלם שהכמות הזמינה שלהם קטנה מ־1, ושלא נעשה בהם שימוש בשנתיים האחרונות, כדי לשמור על מלאי מעודכן ויעיל.  
+<img src="שלב ב/images/delete2b.jpg" width="300" height="200"/> <img src="שלב ב/images/delete2.jpg" width="300" height="200"/> <img src="שלב ב/images/delete2a.jpg" width="300" height="200"/>  
 
-3️⃣השאילתה מוחקת תהליכי ייצור שהחלו בין התאריכים 1 במאי ל־4 במאי 2025, ועדיין לא הושלמו (כלומר, אין להם תאריך סיום). מטרת הפעולה היא להסיר תהליכים שהוזנו אך לא המשיכו בפועל, לצורך ניקוי מידע לא פעיל מהמערכת.
-<img src="שלב ב/images/delete3b.jpg" width="480" height="300"/> <img src="שלב ב/images/delete3.jpg" width="480" height="300"/> <img src="שלב ב/images/delete3a.jpg" width="480" height="300"/> 
-
-
+3️⃣ השאילתה מוחקת תהליכי ייצור שהחלו בין התאריכים 1 במאי ל־4 במאי 2025, ועדיין לא הושלמו (כלומר, אין להם תאריך סיום). מטרת הפעולה היא להסיר תהליכים שהוזנו אך לא המשיכו בפועל, לצורך ניקוי מידע לא פעיל מהמערכת.  
+<img src="שלב ב/images/delete3b.jpg" width="300" height="200"/> <img src="שלב ב/images/delete3.jpg" width="300" height="200"/> <img src="שלב ב/images/delete3a.jpg" width="300" height="200"/>  
 
 ## שימוש ב־ROLLBACK  
 תיאור:  
@@ -161,20 +160,20 @@ backup2.backup – גיבוי מעודכן לאחר שלב ב.
 
 🔧 שלבי הפעולה:  
 בדיקת קיום מקדים:  
-<img src="שלב ב/images/rolb.JPG" width="480" height="300"/>  
+<img src="שלב ב/images/rolb.JPG" width="300" height="200"/>  
 
 תחילת טרנזקציה + הוספה:  
 BEGIN;  
 INSERT INTO employee (employeeid, role, name) VALUES (999, 'Tester', 'Temp');  
 
 בדיקה לפני ביטול:  
-<img src="שלב ב/images/rol.JPG" width="480" height="300"/>  
+<img src="שלב ב/images/rol.JPG" width="300" height="200"/>  
 
 ביטול הפעולה:  
 ROLLBACK;  
 
 בדיקה אחרי ביטול:  
-<img src="שלב ב/images/rola.JPG" width="480" height="300"/>  
+<img src="שלב ב/images/rola.JPG" width="300" height="200"/>  
 
 ## שימוש ב־COMMIT  
 תיאור:  
@@ -183,7 +182,7 @@ ROLLBACK;
 🔧 שלבי הפעולה:  
 בדיקת קיום מקדים:  
 SELECT * FROM employee WHERE employeeid = 888;  
-<img src="שלב ב/images/comB.JPG" width="480" height="300"/>  
+<img src="שלב ב/images/comB.JPG" width="300" height="200"/>  
 
 תחילת טרנזקציה + הוספה:  
 BEGIN;  
@@ -191,28 +190,28 @@ INSERT INTO employee (employeeid, role, name) VALUES (888, 'qa', 'garry');
 
 בדיקה לפני אישור:  
 SELECT * FROM employee WHERE employeeid = 888;  
-<img src="שלב ב/images/com.JPG" width="480" height="300"/>  
+<img src="שלב ב/images/com.JPG" width="300" height="200"/>  
 
 אישור הפעולה:  
 COMMIT;  
 
 בדיקה לאחר אישור:  
 SELECT * FROM employee WHERE employeeid = 888;  
-<img src="שלב ב/images/comA.JPG" width="480" height="300"/>  
+<img src="שלב ב/images/comA.JPG" width="300" height="200"/>  
 
 ## אילוצים (Constraints)
 
 1️⃣ אילוץ NOT NULL בטבלת employee  
 בוצע על העמודה name כדי לוודא שלא ניתן להוסיף עובד ללא שם.  
 ALTER TABLE employee ALTER COLUMN name SET NOT NULL;  
-<img src="שלב ב/images/con1E.JPG" width="480" height="300"/>  
+<img src="שלב ב/images/con1E.JPG" width="300" height="200"/>  
 
 2️⃣ אילוץ 2 – CHECK על finalproduct_.numbottls  
 המטרה:  אילוץ CHECK שמבטיח שכמות הבקבוקים numbottls לא תהיה שלילית. זה מגן על נתונים לא הגיוניים בדיווחי ייצור.  
 ALTER TABLE finalproduct_ ADD CONSTRAINT check_positive_bottles CHECK (numbottls >= 0);  
-<img src="שלב ב/images/con2E.JPG" width="480" height="300"/>  
+<img src="שלב ב/images/con2E.JPG" width="300" height="200"/>  
 
 3️⃣ אילוץ FOREIGN KEY בטבלת productionprocess_ על employeeid  
 המטרה: לוודא שכל employeeid בתהליך יפנה לעובד קיים בטבלת employee  
 ALTER TABLE productionprocess_ ADD CONSTRAINT fk_employee FOREIGN KEY (employeeid) REFERENCES employee(employeeid);  
-<img src="שלב ב/images/con3E.JPG" width="480" height="300"/>
+<img src="שלב ב/images/con3E.JPG" width="300" height="200"/>
