@@ -187,26 +187,27 @@ COMMIT;
 
 ALTER TABLE employee
 ALTER COLUMN name SET NOT NULL;
+ ![אילוץ ראשון](שלב%20ב/images/con1E.JPG)
+
 ניסיון להוסיף עובד ללא שם נכשל עם שגיאה.
 
-2️⃣ אילוץ CHECK בטבלת grapes
-מבטיח שהתאריך harvestdate_ לא יהיה בעתיד.
+2️⃣אילוץ 2 – CHECK על finalproduct_.numbottls
+המטרה:  אילוץ CHECK שמבטיח שכמות הבקבוקים numbottls לא תהיה שלילית. זה מגן על נתונים לא הגיוניים בדיווחי ייצור.
 
-ALTER TABLE grapes
-ADD CONSTRAINT check_harvestdate CHECK (harvestdate_ <= CURRENT_DATE);
+ALTER TABLE finalproduct_
+ADD CONSTRAINT check_positive_bottles CHECK (numbottls >= 0);
+
+ ![אילוץ ראשון](שלב%20ב/images/con2E.JPG)
 
 ניסיון להכניס תאריך בעתיד נתקבל עם שגיאה.
 
-3️⃣ אילוץ DEFAULT בטבלת raw_materials
-הוגדר ערך ברירת מחדל לעמודה quantityavailable_ כך שאם לא יוזן ערך, יוקצה אוטומטית 50.
+3️⃣ אילוץ FOREIGN KEY בטבלת productionprocess_ על employeeid
+המטרה: לוודא שכל employeeid בתהליך יפנה לעובד קיים בטבלת employee
 
-ALTER TABLE raw_materials
-ALTER COLUMN quantityavailable_ SET DEFAULT 50;
+ALTER TABLE productionprocess_
+ADD CONSTRAINT fk_employee FOREIGN KEY (employeeid) REFERENCES employee(employeeid);
 
-הוכנס חומר גלם חדש ללא ערך לכמות – והתקבלה ברירת המחדל בהצלחה.
-
-
-
+ ![אילוץ ראשון](שלב%20ב/images/con3E.JPG)
 ## 🗂️ מבנה התיקיות:
 
 DBProject/ ├── שלב א/ │ ├── createTables.sql │ ├── dropTables.sql │ ├── insertTables.sql │ ├── selectAll.sql │ ├── backup_22042025.backup │ ├── ERD/ │ ├── DSD/ │ ├── Programing/ │ ├── DataImportFiles/ │ └── mockarooFiles/
