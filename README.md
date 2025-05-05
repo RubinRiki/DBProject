@@ -77,10 +77,12 @@ DBProject/ ├── שלב א/ │ ├── createTables.sql │ ├── dro
 
 ## 🧩 שלב ב – שאילתות, אילוצים ופעולות בסיס נתונים
 ## 📄 קבצים שנוצרו:
-Queries.sql – קובץ עם שאילתות SELECT / UPDATE / DELETE.  
-Constraints.sql – קובץ עם שלושה אילוצים (ALTER TABLE).  
-RollbackCommit.sql – הדגמות של ROLLBACK ו־COMMIT.  
-backup2.backup – גיבוי מעודכן לאחר שלב ב.  
+- `queries_select.sql` – קובץ עם שאילתות SELECT.
+- `update_queries (1).sql` – קובץ עם שאילתות UPDATE.
+- `delete_queries.sql` – קובץ עם שאילתות DELETE.
+- `Constraints.sql` – קובץ עם שלושה אילוצים (ALTER TABLE).
+- `RollbackCommit.sql` – הדגמות של פעולות ROLLBACK ו־COMMIT.
+- `images/` – תיקיית תמונות עם תיעוד תוצאות השאילתות.
 
 עדכונים ושינויים:  
 * שדה winetype_ הכיל ערכים מספריים ולכן עודכן ל־varchar(30)  
