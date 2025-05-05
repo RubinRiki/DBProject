@@ -1,7 +1,10 @@
-
-SELECT * FROM Employee;
-SELECT * FROM Grapes;
-SELECT * FROM Materials;
-SELECT * FROM Containers;
-SELECT * FROM FinalProduct;
-SELECT * FROM ProductionProcess;
+SELECT * FROM grapes;
+SELECT * FROM materials_;
+SELECT * FROM productionequipment_;
+SELECT * FROM finalproduct_;
+SELECT * FROM containers_;
+SELECT * FROM employee;
+SELECT * FROM productionprocess_;
+SELECT * FROM process_equipment;
+SELECT * FROM process_materials;
+SELECT * FROM processcontainers;

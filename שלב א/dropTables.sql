@@ -1,6 +1,10 @@
-DROP TABLE IF EXISTS ProductionProcess;
-DROP TABLE IF EXISTS FinalProduct;
-DROP TABLE IF EXISTS Containers;
-DROP TABLE IF EXISTS Materials;
-DROP TABLE IF EXISTS Grapes;
-DROP TABLE IF EXISTS Employee;
+DROP TABLE IF EXISTS process_equipment;
+DROP TABLE IF EXISTS process_materials;
+DROP TABLE IF EXISTS processcontainers;
+DROP TABLE IF EXISTS productionequipment_;
+DROP TABLE IF EXISTS productionprocess_;
+DROP TABLE IF EXISTS finalproduct_;
+DROP TABLE IF EXISTS containers_;
+DROP TABLE IF EXISTS employee;
+DROP TABLE IF EXISTS grapes;
+DROP TABLE IF EXISTS materials_;
