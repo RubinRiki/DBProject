@@ -6,6 +6,6 @@ ALTER COLUMN name SET NOT NULL;
 ALTER TABLE finalproduct_
 ADD CONSTRAINT check_positive_bottles CHECK (numbottls >= 0);
 
--- Constraint 3: DEFAULT value for equipment status
-ALTER TABLE productionequipment_
-ALTER COLUMN status_ SET DEFAULT 'Available';
+-- Constraint 3: 
+ALTER TABLE productionprocess_
+ADD CONSTRAINT fk_employee FOREIGN KEY (employeeid) REFERENCES employee(employeeid);
