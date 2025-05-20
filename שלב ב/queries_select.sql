@@ -102,3 +102,4 @@ GROUP BY
 ORDER BY 
     year, month;
 
+

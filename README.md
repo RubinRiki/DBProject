@@ -217,3 +217,68 @@ ALTER TABLE finalproduct_ ADD CONSTRAINT check_positive_bottles CHECK (numbottls
 המטרה: לוודא שכל employeeid בתהליך יפנה לעובד קיים בטבלת employee  
 ALTER TABLE productionprocess_ ADD CONSTRAINT fk_employee FOREIGN KEY (employeeid) REFERENCES employee(employeeid);  
 <img src="שלב ב/images/con3E.JPG" width="300" height="200"/>
+
+
+## 🧩 שלב ג – אינטגרציה ומבטים
+
+### החלטות אינטגרציה:
+
+לא בוצע קשר M:N בין FinalProduct ל־Product. כל FinalProduct משויך למוצר יחיד בלבד. הוספנו לשם כך את העמודה productid לטבלת finalproduct_.
+
+לא השתמשנו ב־FOREIGN KEY מול טבלאות מיובאות (satge3), אלא חיברנו באמצעות VIEWים.
+
+הקשר בין RawMaterials ל־Purchase בוצע באמצעות הוספת העמודה purchesid לטבלת materials_.
+
+כל ההתאמות לסכמה נעשו באמצעות ALTER TABLE, מבלי ליצור טבלאות חדשות.
+
+### פקודות עיקריות שבוצעו: 
+
+CREATE EXTENSION IF NOT EXISTS postgres_fdw;
+
+CREATE SERVER satge3_server
+FOREIGN DATA WRAPPER postgres_fdw
+OPTIONS (host 'localhost', dbname 'satge3', port '5432');
+
+CREATE USER MAPPING FOR current_user
+SERVER satge3_server
+OPTIONS (user 'riki', password '1234');
+
+ALTER TABLE finalproduct_
+ADD COLUMN productid INT;
+
+ALTER TABLE materials_
+ADD COLUMN purchesid INT;
+
+כל פקודות אלו נמצאים בקובץ: Integrate
+
+## VIEWים שנוצרו:
+ הפירוט המלא נמצא בקובץ : Viewa
+
+1. unified_employees
+
+מאחד את עובדי הייצור עם עובדי הרכש, כולל תיאור התפקיד.
+
+SELECT * FROM unified_employees LIMIT 10;
+
+2. finalproduct_with_info
+
+מציג את מוצרי היין שייוצרו יחד עם נתונים מטבלת המוצרים (Product).
+
+SELECT * FROM finalproduct_with_info LIMIT 10;
+
+3. materials_with_purchase
+
+מציג אילו חומרי גלם נרכשו ובאיזו רכישה.
+
+SELECT * FROM materials_with_purchase LIMIT 10;
+
+4. procurement_orders_summary
+
+סיכום הזמנות לפי ספקים, כולל מספר פריטים וסכום כוללת להזמנה.
+
+SELECT * FROM procurement_orders_summary LIMIT 10;
+
+שאילתות על VIEWים:
+
+חלק זה יתווסף לאחר כתיבת השאילתות בפועל.
+
