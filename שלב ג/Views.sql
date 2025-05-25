@@ -1,61 +1,61 @@
--- מבט 1: unified_employees (איחוד עובדים)
-CREATE VIEW unified_employees AS
+מבטים ושאילתות:
+
+מבט 1- מנקודת המבט של מחלקת היין
+מבט זה מציג מידע על תהליך ייצור היין – כמה בקבוקים נוצרו, באיזה מיכל הם נשמרו, ומה הייתה קיבולת המיכל.
+
+CREATE VIEW view_production_bottling_summary AS
 SELECT
-  employeeid,
-  name AS employeename,
-  NULL::DATE AS hiredate,
-  role AS role_description
-FROM employee
-
-UNION ALL
-
-SELECT
-  employeeid,
-  employeename,
-  hiredate,
-  r.rolename AS role_description
-FROM employee_stage3 e
-JOIN role_stage3 r ON e.roleid = r.roleid;
+  pp.processid_,
+  pp.startdate_,
+  fp.batchnumber_,
+  fp.winetype_,
+  fp.numbottls,
+  c.capacityl_ AS container_capacity
+FROM productionprocess_ pp
+JOIN finalproduct_ fp ON pp.batchnumber_ = fp.batchnumber_
+JOIN processcontainers pc ON pp.processid_ = pc.processid_
+JOIN containers_ c ON pc.containerid_ = c.containerid_;
 
 
--- מבט 2: finalproduct_with_info (קשר בין ייצור למוצר)
-CREATE VIEW finalproduct_with_info AS
-SELECT
-  f.batchnumber_,
-  f.productid,
-  f.winetype_,
-  f.bottlingdate_,
-  f.numbottls,
-  p.productname,
-  p.brand,
-  p.price,
-  p.stockquantity
-FROM finalproduct_ f
-JOIN product_stage3 p
-ON f.productid = p.productid;
+🔹שאילתה 1: זיהוי תהליכים שבהם קיבולת המיכל הייתה גדולה משמעותית מהצורך
+SELECT *
+FROM view_production_bottling_summary
+WHERE container_capacity >= numbottls * 2;
 
 
--- מבט 3: materials_with_purchase (חומרי גלם מול רכישות)
-CREATE VIEW materials_with_purchase AS
-SELECT
-  m.materialid_,
-  m.name_,
-  m.quantityavailable_,
-  m.purchesid,
-  p.paymentmethod
-FROM materials_ m
-JOIN purchase_stage3 p ON m.purchesid = p.purchesid;
+🔹שאילתה 2: ממוצע כמות בקבוקים לפי סוג יין
 
+SELECT winetype_, AVG(numbottls) AS avg_bottles
+FROM view_production_bottling_summary
+GROUP BY winetype_;
 
--- מבט 4: procurement_orders_summary (רכש – סיכום הזמנות)
-CREATE VIEW procurement_orders_summary AS
+מבט שני- מנקודת המבט של המכולת
+המבט מחבר בין טבלת ההזמנות (orders) לבין טבלת הספקים (supplier) ומאפשר לראות מתי הוזמן משהו, וממי.
+
+CREATE VIEW view_order_supplier_summary AS
 SELECT
   o.orderid,
   o.orderdate,
-  s.suppliername,
-  COUNT(oi.productid) AS products_count,
-  SUM(oi.supplierprice * oi.quantity) AS total_order_price
-FROM orders_stage3 o
-JOIN supplier_stage3 s ON o.supplierid = s.supplierid
-JOIN orderitems_stage3 oi ON o.orderid = oi.orderid
-GROUP BY o.orderid, o.orderdate, s.suppliername;
+  s.suppliername
+FROM orders o
+JOIN supplier s ON o.supplierid = s.supplierid;
+
+
+
+
+ שאילתה 1: כל ההזמנות שבוצעו מספק בשם 'אביב טכנולוגי'
+SELECT *
+FROM view_order_supplier_summary
+WHERE suppliername = 'אביב טכנולוגי';
+
+
+ שאילתה 2: מספר ההזמנות שביצע כל ספק
+SELECT suppliername, COUNT(*) AS total_orders
+FROM view_order_supplier_summary
+GROUP BY suppliername;
+
+
+
+
+
+
