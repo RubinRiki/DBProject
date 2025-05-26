@@ -233,6 +233,8 @@ ALTER TABLE productionprocess_ ADD CONSTRAINT fk_employee FOREIGN KEY (employeei
 
 ### פקודות עיקריות שבוצעו: 
 
+```sql
+
 CREATE EXTENSION IF NOT EXISTS postgres_fdw;
 
 CREATE SERVER satge3_server
@@ -250,6 +252,20 @@ ALTER TABLE materials_
 ADD COLUMN purchesid INT;
 
 כל פקודות אלו נמצאים בקובץ: Integrate
+```
+
+
+תמונות התרשימים נמצאים בתקית השלב:
+האגף שלנו:
+<img src="/שלב ג/Procces_ERD.png" width="300" height="200"/> 
+
+האגף שניתן לנו:
+<img src="/שלב ג/DSD_stage3.png" width="300" height="200"/> 
+<img src="/שלב ג/grocery_ERD.png" width="300" height="200"/>  
+
+האגף המשולב:
+<img src="/שלב ג/DSD_mixed.png" width="300" height="200"/> 
+<img src="/שלב ג/ERD_mix.png" width="300" height="200"/>  
 
 ---
 
