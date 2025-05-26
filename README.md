@@ -312,7 +312,6 @@ FROM view_production_bottling_summary
 GROUP BY winetype_;
 ```
 
-![view1_query2](שלב ג/img/V1S2.png)
 <img src="/שלב ג/img/V1S2.png" width="300" height="200"/>  
 
 ---
