@@ -37,8 +37,8 @@ SELECT
   o.orderid,
   o.orderdate,
   s.suppliername
-FROM orders o
-JOIN supplier s ON o.supplierid = s.supplierid;
+FROM orders_local o
+JOIN supplier_local s ON o.supplierid = s.supplierid;
 
 
 
