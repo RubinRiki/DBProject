@@ -252,7 +252,7 @@ ADD COLUMN purchesid INT;
 כל פקודות אלו נמצאים בקובץ: Integrate
 
 ## VIEWים שנוצרו:
- הפירוט המלא נמצא בקובץ : Viewa
+ הפירוט המלא נמצא בקובץ : Views
 
 1. unified_employees
 
