@@ -251,34 +251,108 @@ ADD COLUMN purchesid INT;
 
 כל פקודות אלו נמצאים בקובץ: Integrate
 
-## VIEWים שנוצרו:
- הפירוט המלא נמצא בקובץ : Views
+---
 
-1. unified_employees
+### 📊 VIEWים שנוצרו:
 
-מאחד את עובדי הייצור עם עובדי הרכש, כולל תיאור התפקיד.
+#### 1️⃣ view_production_bottling_summary  
+מציג את תהליכי ייצור היין – כולל מזהה התהליך, תאריך התחלה, מספר האצווה, סוג היין, כמות בקבוקים, וקיבולת המיכל שבו נשמרו.
 
-SELECT * FROM unified_employees LIMIT 10;
+```sql
+CREATE VIEW view_production_bottling_summary AS
+SELECT
+  pp.processid_,
+  pp.startdate_,
+  fp.batchnumber_,
+  fp.winetype_,
+  fp.numbottls,
+  c.capacityl_ AS container_capacity
+FROM productionprocess_ pp
+JOIN finalproduct_ fp ON pp.batchnumber_ = fp.batchnumber_
+JOIN processcontainers pc ON pp.processid_ = pc.processid_
+JOIN containers_ c ON pc.containerid_ = c.containerid_;
+```
 
-2. finalproduct_with_info
+שליפת נתונים:
+```sql
+SELECT * FROM view_production_bottling_summary LIMIT 10;
+```
 
-מציג את מוצרי היין שייוצרו יחד עם נתונים מטבלת המוצרים (Product).
+![view1_select](שלב ג/img/V1S1.png)
 
-SELECT * FROM finalproduct_with_info LIMIT 10;
+---
 
-3. materials_with_purchase
+#### 2️⃣ view_order_supplier_summary  
+מחבר בין הזמנות לספקים – מציג את מזהה ההזמנה, תאריך ההזמנה, ושם הספק.
 
-מציג אילו חומרי גלם נרכשו ובאיזו רכישה.
+```sql
+CREATE VIEW view_order_supplier_summary AS
+SELECT
+  o.orderid,
+  o.orderdate,
+  s.suppliername
+FROM orders o
+JOIN supplier s ON o.supplierid = s.supplierid;
+```
 
-SELECT * FROM materials_with_purchase LIMIT 10;
+שליפת נתונים:
+```sql
+SELECT * FROM view_order_supplier_summary LIMIT 10;
+```
 
-4. procurement_orders_summary
+![view2_select](שלב ג/img/V2S1.png)
 
-סיכום הזמנות לפי ספקים, כולל מספר פריטים וסכום כוללת להזמנה.
+---
 
-SELECT * FROM procurement_orders_summary LIMIT 10;
+###  שאילתות על VIEWים:
 
-שאילתות על VIEWים:
+#### 🔍 view_production_bottling_summary – שאילתה 1: מיכלים לא יעילים  
+**תיאור:** השאילתה בודקת תהליכים שבהם קיבולת המיכל גדולה לפחות פי 2 מכמות הבקבוקים – מצב של חוסר ניצול משאבים.
 
-חלק זה יתווסף לאחר כתיבת השאילתות בפועל.
+```sql
+SELECT *
+FROM view_production_bottling_summary
+WHERE container_capacity >= numbottls * 2;
+```
+
+![view1_query1](שלב ג/img/V1S1.png)
+
+---
+
+#### 📊 view_production_bottling_summary – שאילתה 2: ממוצע בקבוקים לפי סוג יין  
+**תיאור:** מחשבת את ממוצע מספר הבקבוקים שיוצרו עבור כל סוג יין.
+
+```sql
+SELECT winetype_, AVG(numbottls) AS avg_bottles
+FROM view_production_bottling_summary
+GROUP BY winetype_;
+```
+
+![view1_query2](שלב ג/img/V1S2.png)
+
+---
+
+#### 📦 view_order_supplier_summary – שאילתה 1: הזמנות מ"אביב טכנולוגי"  
+**תיאור:** מציגה את כל ההזמנות שבוצעו מול ספק בשם "אביב טכנולוגי".
+
+```sql
+SELECT *
+FROM view_order_supplier_summary
+WHERE suppliername = 'אביב טכנולוגי';
+```
+
+![view2_query1](שלב ג/img/V2S1.png)
+
+---
+
+#### 📈 view_order_supplier_summary – שאילתה 2: מספר הזמנות לכל ספק  
+**תיאור:** מציגה את מספר ההזמנות שביצע כל ספק במערכת.
+
+```sql
+SELECT suppliername, COUNT(*) AS total_orders
+FROM view_order_supplier_summary
+GROUP BY suppliername;
+```
+
+![view2_query2](שלב ג/img/V2S2.png)
 
