@@ -221,6 +221,7 @@ ALTER TABLE productionprocess_ ADD CONSTRAINT fk_employee FOREIGN KEY (employeei
 
 ## 🧩 שלב ג – אינטגרציה ומבטים
 
+קובץ הגיבוי לשלב זה נמצא בתקיה הראשית של הפרוייקט תחת השם backupStage3
 ### החלטות אינטגרציה:
 
 לא בוצע קשר M:N בין FinalProduct ל־Product. כל FinalProduct משויך למוצר יחיד בלבד. הוספנו לשם כך את העמודה productid לטבלת finalproduct_.
