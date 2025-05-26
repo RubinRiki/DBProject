@@ -382,77 +382,77 @@ GROUP BY suppliername;
 
 ## 🧮 פונקציה 1 – get_bottle_count_by_type
 
-<img src="/שלב ד/img/proof_bottle_count_notice.png" width="300"/>
+<img src="/שלב ד/img/proof_bottle_count_notice.JPG" width="300"/>
 <br><sub>הרצת הפונקציה עם Merlot והחזרת NOTICE</sub>
 
 ---
 
 ## 🧾 פונקציה 2 – get_orders_by_supplier
 
-<img src="/שלב ד/img/proof_orders_cursor_notice.png" width="300"/>
+<img src="/שלב ד/img/proof_orders_cursor_notice.JPG" width="300"/>
 <br><sub>לולאה על תוצאות הפונקציה והצגת כל הזמנה</sub>
 
 ---
 
 ## 🛠 פרוצדורה 1 – increase_prices_by_supplier
 
-<img src="/שלב ד/img/increase_prices_before.png" width="300"/>
-<img src="/שלב ד/img/increase_prices_call.png" width="300"/>
-<img src="/שלב ד/img/increase_prices_after.png" width="300"/>
+<img src="/שלב ד/img/increase_prices_before.JPG" width="300"/>
+<img src="/שלב ד/img/increase_prices_call.JPG" width="300"/>
+<img src="/שלב ד/img/increase_prices_after.JPG" width="300"/>
 <br><sub>לפני, במהלך ואחרי קריאה לפרוצדורה</sub>
 
 ---
 
 ## 🧪 פרוצדורה 2 – add_material_if_not_exists
 
-<img src="/שלב ד/img/add_material_before.png" width="300"/>
-<img src="/שלב ד/img/add_material_call.png" width="300"/>
-<img src="/שלב ד/img/add_material_after.png" width="300"/>
+<img src="/שלב ד/img/add_material_before.JPG" width="300"/>
+<img src="/שלב ד/img/add_material_call.JPG" width="300"/>
+<img src="/שלב ד/img/add_material_after.JPG" width="300"/>
 <br><sub>בדיקה לפני, הפעלת הפרוצדורה, בדיקה אחרי</sub>
 
 ---
 
 ## 🧷 טריגר 1 – trg_update_last_updated
 
-<img src="/שלב ד/img/proof_last_updated_before.png" width="300"/>
-<img src="/שלב ד/img/last_updated_update.png" width="300"/>
-<img src="/שלב ד/img/last_updated_after.png" width="300"/>
+<img src="/שלב ד/img/proof_last_updated_before.JPG" width="300"/>
+<img src="/שלב ד/img/last_updated_update.JPG" width="300"/>
+<img src="/שלב ד/img/last_updated_after.JPG" width="300"/>
 <br><sub>שדה מתעדכן אוטומטית לאחר UPDATE</sub>
 
 ---
 
 ## 🛡 טריגר 2 – trg_validate_material_insert
 
-<img src="/שלב ד/img/validate_material_before.png" width="300"/>
-<img src="/שלב ד/img/validate_material_insert_fail.png" width="300"/>
-<img src="/שלב ד/img/validate_material_after.png" width="300"/>
+<img src="/שלב ד/img/validate_material_before.JPG" width="300"/>
+<img src="/שלב ד/img/validate_material_insert_fail.JPG" width="300"/>
+<img src="/שלב ד/img/validate_material_after.JPG" width="300"/>
 <br><sub>בדיקה שהשורה לא התווספה בעקבות החריגה</sub>
 
 ---
 
 ## 🍷 טריגר 3 – trg_complete_batch_bottling
 
-<img src="/שלב ד/img/bottlingdate_before.png" width="300"/>
-<img src="/שלב ד/img/bottlingdate_insert_processes.png" width="300"/>
-<img src="/שלב ד/img/bottlingdate_after.png" width="300"/>
+<img src="/שלב ד/img/bottlingdate_before.JPG" width="300"/>
+<img src="/שלב ד/img/bottlingdate_insert_processes.JPG" width="300"/>
+<img src="/שלב ד/img/bottlingdate_after.JPG" width="300"/>
 <br><sub>עדכון אוטומטי של BottlingDate לאחר הוספת תהליך רביעי</sub>
 
 ---
 
 ## ▶️ תוכנית ראשית 1 – main_bottles_and_material
 
-<img src="/שלב ד/img/main1_before.png" width="300"/>
-<img src="/שלב ד/img/main1_execution.png" width="300"/>
-<img src="/שלב ד/img/main1_after.png" width="300"/>
+<img src="/שלב ד/img/main1_before.JPG" width="300"/>
+<img src="/שלב ד/img/main1_execution.JPG" width="300"/>
+<img src="/שלב ד/img/main1_after.JPG" width="300"/>
 <br><sub>בדיקה לפני, הרצה עם NOTICE, בדיקה אחרי</sub>
 
 ---
 
 ## ▶️ תוכנית ראשית 2 – main_orders_and_prices
 
-<img src="/שלב ד/img/main2_before.png" width="300"/>
-<img src="/שלב ד/img/main2_execution.png" width="300"/>
-<img src="/שלב ד/img/main2_after.png" width="300"/>
+<img src="/שלב ד/img/main2_before.JPG" width="300"/>
+<img src="/שלב ד/img/main2_execution.JPG" width="300"/>
+<img src="/שלב ד/img/main2_after.JPG" width="300"/>
 <br><sub>לפני-הרצה-אחרי כולל הודעות</sub>
 
 ---
