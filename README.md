@@ -273,14 +273,6 @@ JOIN processcontainers pc ON pp.processid_ = pc.processid_
 JOIN containers_ c ON pc.containerid_ = c.containerid_;
 ```
 
-שליפת נתונים:
-```sql
-SELECT * FROM view_production_bottling_summary LIMIT 10;
-```
-
-![view1_select](שלב ג/img/V1S1.png)
-
----
 
 #### 2️⃣ view_order_supplier_summary  
 מחבר בין הזמנות לספקים – מציג את מזהה ההזמנה, תאריך ההזמנה, ושם הספק.
@@ -295,14 +287,6 @@ FROM orders o
 JOIN supplier s ON o.supplierid = s.supplierid;
 ```
 
-שליפת נתונים:
-```sql
-SELECT * FROM view_order_supplier_summary LIMIT 10;
-```
-
-![view2_select](שלב ג/img/V2S1.png)
-
----
 
 ###  שאילתות על VIEWים:
 
@@ -315,7 +299,7 @@ FROM view_production_bottling_summary
 WHERE container_capacity >= numbottls * 2;
 ```
 
-![view1_query1](שלב ג/img/V1S1.png)
+<img src="/שלב ג/img/V1S1.png" width="300" height="200"/>  
 
 ---
 
@@ -329,6 +313,7 @@ GROUP BY winetype_;
 ```
 
 ![view1_query2](שלב ג/img/V1S2.png)
+<img src="/שלב ג/img/V1S2.png" width="300" height="200"/>  
 
 ---
 
@@ -341,7 +326,7 @@ FROM view_order_supplier_summary
 WHERE suppliername = 'אביב טכנולוגי';
 ```
 
-![view2_query1](שלב ג/img/V2S1.png)
+<img src="/שלב ג/img/V2S1.png" width="300" height="200"/>  
 
 ---
 
@@ -354,5 +339,5 @@ FROM view_order_supplier_summary
 GROUP BY suppliername;
 ```
 
-![view2_query2](שלב ג/img/V2S2.png)
+<img src="/שלב ג/img/V2S2.png" width="300" height="200"/>  
 
