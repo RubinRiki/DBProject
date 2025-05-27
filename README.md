@@ -223,14 +223,30 @@ ALTER TABLE productionprocess_ ADD CONSTRAINT fk_employee FOREIGN KEY (employeei
 
 קובץ הגיבוי לשלב זה נמצא בתקיה הראשית של הפרוייקט תחת השם backupStage3
 ### החלטות אינטגרציה:
+✅ FinalProduct ←→ Product
+הקשר ביניהם הוא 1:1, כך שכל FinalProduct משויך למוצר אחד בלבד מתוך Product.
+לכן הוספנו את העמודה productid בטבלת finalproduct_, וקישרנו ל־product_local באמצעות FOREIGN KEY.
 
-לא בוצע קשר M:N בין FinalProduct ל־Product. כל FinalProduct משויך למוצר יחיד בלבד. הוספנו לשם כך את העמודה productid לטבלת finalproduct_.
+✅ עובדים (Employee)
+מיזגנו את הטבלאות employee ו־employee_local לטבלה אחת בשם employee_merge.
+כל הטבלאות שעבדו מול employee_local עודכנו כך שהקשר יהיה מול employee_merge.
 
-לא השתמשנו ב־FOREIGN KEY מול טבלאות מיובאות (satge3), אלא חיברנו באמצעות VIEWים.
+✅ חומרי גלם והזמנות (Materials ←→ Orders)
+יצרנו טבלה חדשה בשם ordermaterials_local שמייצגת קשר M:N בין חומרי גלם (materials_) להזמנות (orders_local).
+כל שורה בטבלה כוללת orderid, materialid, quantity, ו־supplierprice.
+בוצע קשר FOREIGN KEY מול שתי הטבלאות.
+לאחר מכן הוזנו הזמנות חדשות עם חומרי גלם, והטבלה עודכנה.
 
-הקשר בין RawMaterials ל־Purchase בוצע באמצעות הוספת העמודה purchesid לטבלת materials_.
+✅ עדכון מלאי
+לאחר הזנת החומרים להזמנות, עודכנה עמודת quantityavailable_ בטבלת materials_ בהתאם להגעת החומר.
 
-כל ההתאמות לסכמה נעשו באמצעות ALTER TABLE, מבלי ליצור טבלאות חדשות.
+✅ שימוש ב־VIEWים בלבד מול טבלאות stage3
+לא השתמשנו ב־FOREIGN KEY מול טבלאות FOREIGN מ־stage3, אלא חיברנו באמצעות VIEWים להצגה ואינטגרציה.
+
+✅ שינויים בסכמה
+כל ההתאמות נעשו באמצעות ALTER TABLE, ללא יצירת טבלאות חדשות, פרט ל־ordermaterials_local.
+
+
 
 ### פקודות עיקריות שבוצעו: 
 
