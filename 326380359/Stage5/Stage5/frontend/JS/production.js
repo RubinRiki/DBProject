@@ -1,47 +1,85 @@
-// JS/production.js
 const API = "http://localhost:3001/api/production";
 
-// פתיחת / סגירת הטופס
-document.getElementById("openFormBtn").addEventListener("click", () => {
-  document.getElementById("formWrapper").classList.toggle("hidden");
+const formModal = document.getElementById("formModal");
+const deleteModal = document.getElementById("deleteModal");
+const openFormBtn = document.getElementById("openFormBtn");
+const productionForm = document.getElementById("productionForm");
+const cancelBtn = document.getElementById("cancelBtn");
+const confirmDelete = document.getElementById("confirmDelete");
+const cancelDelete = document.getElementById("cancelDelete");
+
+const typeInput = document.getElementById("typeInput");
+const seqInput = document.getElementById("seqInput");
+const grapeIdInput = document.getElementById("grapeIdInput");
+const employeeIdInput = document.getElementById("employeeIdInput");
+const batchNumInput = document.getElementById("batchNumInput");
+const startDateInput = document.getElementById("startDateInput");
+const endDateInput = document.getElementById("endDateInput");
+
+let selectedId = null;
+let processToDelete = null;
+
+openFormBtn.addEventListener("click", () => {
+  resetForm();
+  formModal.classList.remove("hidden");
 });
 
-// טעינת הדף
-document.addEventListener("DOMContentLoaded", () => {
+cancelBtn.addEventListener("click", () => {
+  formModal.classList.add("hidden");
+});
+
+cancelDelete.addEventListener("click", () => {
+  deleteModal.classList.add("hidden");
+});
+
+confirmDelete.addEventListener("click", async () => {
+  if (processToDelete !== null) {
+    await fetch(`${API}/${processToDelete}`, { method: "DELETE" });
+    deleteModal.classList.add("hidden");
+    loadProcesses();
+  }
+});
+
+productionForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const process = {
+    type_: Number(typeInput.value),
+    seqnumber: Number(seqInput.value),
+    grapeid: Number(grapeIdInput.value),
+    employeeid: Number(employeeIdInput.value),
+    batchnumber_: Number(batchNumInput.value),
+    startdate_: startDateInput.value,
+    enddate_: endDateInput.value || null,
+  };
+
+  await fetch(API, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(process),
+  });
+
+  formModal.classList.add("hidden");
   loadProcesses();
-
-  // שליחת הטופס
-  document
-    .getElementById("productionForm")
-    .addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      // איסוף ערכים מהטופס – בדיוק לפי שמות העמודות ב-PG
-      const process = {
-        type_:        Number(document.getElementById("typeInput").value),
-        seqnumber:    Number(document.getElementById("seqInput").value),
-        grapeid:      Number(document.getElementById("grapeIdInput").value),
-        employeeid:   Number(document.getElementById("employeeIdInput").value),
-        batchnumber_: Number(document.getElementById("batchNumInput").value),
-        startdate_:   document.getElementById("startDateInput").value,
-        enddate_:     document.getElementById("endDateInput").value || null
-      };
-
-      await fetch(API, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(process)
-      });
-
-      loadProcesses();
-      e.target.reset();
-      document.getElementById("formWrapper").classList.add("hidden");
-    });
 });
 
-// שליפת כל התהליכים
+function resetForm() {
+  typeInput.value = "";
+  seqInput.value = "";
+  grapeIdInput.value = "";
+  employeeIdInput.value = "";
+  batchNumInput.value = "";
+  startDateInput.value = "";
+  endDateInput.value = "";
+}
+
+function promptDelete(id) {
+  processToDelete = id;
+  deleteModal.classList.remove("hidden");
+}
+
 async function loadProcesses() {
-  const res  = await fetch(API);
+  const res = await fetch(API);
   const data = await res.json();
 
   const tbody = document.getElementById("processTableBody");
@@ -56,20 +94,14 @@ async function loadProcesses() {
       <td>${p.grapeid}</td>
       <td>${p.employeeid}</td>
       <td>${p.batchnumber_}</td>
-      <td>${p.startdate_.slice(0,10)}</td>
-      <td>${p.enddate_ ? p.enddate_.slice(0,10) : ""}</td>
+      <td>${p.startdate_?.slice(0, 10)}</td>
+      <td>${p.enddate_ ? p.enddate_.slice(0, 10) : ""}</td>
       <td>
-        <button class="action-btn delete-btn" onclick="deleteProcess(${p.processid_})">
-          Delete
-        </button>
+        <button class="delete-btn" onclick="promptDelete(${p.processid_})">Delete</button>
       </td>
     `;
     tbody.appendChild(tr);
   });
 }
 
-// מחיקה
-async function deleteProcess(id) {
-  await fetch(`${API}/${id}`, { method: "DELETE" });
-  loadProcesses();
-}
+document.addEventListener("DOMContentLoaded", loadProcesses);

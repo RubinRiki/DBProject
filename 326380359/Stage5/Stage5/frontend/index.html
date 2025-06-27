@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./CSS/style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body style="background-color: black;">
 
   <!-- ניווט עליון -->
   <nav class="top-nav">
@@ -19,22 +19,39 @@
     </ul>
   </nav>
 
-  <header>
-    <h1>Winery Dashboard</h1>
+  <header >
+    <h1 >Winery Dashboard</h1>
     <p>Visual overview of your wine production system</p>
   </header>
 
-  <main class="dashboard-container">
-    <section class="chart-box">
+  <main class="homepage">
+
+  <section class="about-section">
+    <div class="about-text">
+      <h2>Discover Our Vineyard</h2>
+      <p>
+        Nestled in the heart of the countryside, our winery blends traditional craftsmanship
+        with modern elegance. Each bottle tells the story of our passion, heritage, and devotion to excellence.
+      </p>
+    </div>
+    <div class="about-image">
+      <img src="./assert/הורדה (3).jpeg" alt="Vineyard photo">
+    </div>
+  </section>
+
+  <section class="dashboard-section">
+    <div class="chart-box">
       <h2>Wine Types Distribution</h2>
       <canvas id="wineChart"></canvas>
-    </section>
+    </div>
 
-    <section class="chart-box">
+    <div class="chart-box">
       <h2>System Overview</h2>
       <canvas id="overviewChart"></canvas>
-    </section>
-  </main>
+    </div>
+  </section>
+
+</main>
 
   <script src="./JS/index.js"></script>
 </body>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Manage Employees</title>
-  <link rel="stylesheet" href="./CSS/employee.css" />
+  <link rel="stylesheet" href="./CSS/style.css" />
 </head>
 <body>
   <nav class="top-nav">
@@ -22,22 +22,11 @@
   </header>
 
   <main class="container">
-    <!-- כפתור לפתיחת הטופס -->
     <div class="toolbar">
       <button id="openFormBtn">+ Add Employee</button>
     </div>
 
-    <!-- טופס -->
-    <section id="formWrapper" class="form-section hidden">
-      <form id="employeeForm">
-        <input type="text" id="name" placeholder="Full Name" required />
-        <input type="date" id="hiredate" required />
-        <input type="number" id="role" placeholder="Role ID" required />
-        <button type="submit">Save Employee</button>
-      </form>
-    </section>
-
-    <!-- טבלה -->
+    <!-- טבלת עובדים -->
     <section class="table-section">
       <h2>Employee List</h2>
       <table>
@@ -54,6 +43,33 @@
       </table>
     </section>
   </main>
+
+  <!-- מודל טופס -->
+  <div id="formModal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="formTitle">Add Employee</h2>
+      <form id="employeeForm">
+        <input type="text" id="name" placeholder="Full Name" required />
+        <input type="date" id="hiredate" required />
+        <input type="number" id="role" placeholder="Role ID" required />
+        <div class="modal-buttons">
+          <button type="submit" class="save-btn">Save</button>
+          <button type="button" class="cancel-btn" id="cancelBtn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- מודל אישור מחיקה -->
+  <div id="deleteModal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Are you sure you want to delete this employee?</h2>
+      <div class="modal-buttons">
+        <button class="delete-confirm" id="confirmDelete">Yes</button>
+        <button class="cancel-btn" id="cancelDelete">No</button>
+      </div>
+    </div>
+  </div>
 
   <script src="./JS/employee.js"></script>
 </body>

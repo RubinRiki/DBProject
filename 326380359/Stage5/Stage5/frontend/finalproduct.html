@@ -3,9 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <title>Manage Wine Products</title>
-  <link rel="stylesheet" href="./CSS/finalproduct.css" />
+  <link rel="stylesheet" href="./CSS/style.css" />
 </head>
 <body>
+  <nav class="top-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="finalproduct.html" class="active">Final Products</a></li>
+      <li><a href="employee.html">Employees</a></li>
+      <li><a href="production.html">Production</a></li>
+      <li><a href="queries.html">Queries</a></li>
+    </ul>
+  </nav>
+
   <header>
     <h1>Final Products</h1>
     <p>View and manage all wine production results</p>
@@ -16,18 +26,7 @@
       <button id="openFormBtn">+ Add New Product</button>
     </div>
 
-    <section id="formWrapper" class="form-section hidden">
-      <form id="productForm">
-        <input type="number" step="0.1" id="qntityofbottle" placeholder="Quantity of Bottle" required />
-        <input type="number" id="batchnumber_" placeholder="Batch Number" required />
-        <input type="text" id="winetype_" placeholder="Wine Type" required />
-        <input type="date" id="bottlingdate_" required />
-        <input type="number" id="numbottls" placeholder="Bottle Count" required />
-        <input type="number" id="productid" placeholder="Product ID" />
-        <button type="submit">Save Product</button>
-      </form>
-    </section>
-
+    <!-- טבלה -->
     <section class="table-section">
       <h2>Product List</h2>
       <table>
@@ -46,6 +45,36 @@
       </table>
     </section>
   </main>
+
+  <!-- מודל טופס -->
+  <div id="formModal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="formTitle">Add Product</h2>
+      <form id="productForm">
+        <input type="number" step="0.1" id="qntityofbottle" placeholder="Quantity of Bottle" required />
+        <input type="number" id="batchnumber_" placeholder="Batch Number" required />
+        <input type="text" id="winetype_" placeholder="Wine Type" required />
+        <input type="date" id="bottlingdate_" required />
+        <input type="number" id="numbottls" placeholder="Bottle Count" required />
+        <input type="number" id="productid" placeholder="Product ID" />
+        <div class="modal-buttons">
+          <button type="submit" class="save-btn">Save</button>
+          <button type="button" class="cancel-btn" id="cancelBtn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- מודל אישור מחיקה -->
+  <div id="deleteModal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Are you sure you want to delete this product?</h2>
+      <div class="modal-buttons">
+        <button class="delete-confirm" id="confirmDelete">Yes</button>
+        <button class="cancel-btn" id="cancelDelete">No</button>
+      </div>
+    </div>
+  </div>
 
   <script src="./JS/finalproduct.js"></script>
 </body>
