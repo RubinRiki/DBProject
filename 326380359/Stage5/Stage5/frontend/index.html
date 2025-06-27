@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard - Winery System</title>
+    <link rel="stylesheet" href="./CSS/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- ניווט עליון -->
+  <nav class="top-nav">
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="finalproduct.html">Final Products</a></li>
+      <li><a href="employee.html">Employees</a></li>
+      <li><a href="production.html">Production</a></li>
+      <li><a href="queries.html">Queries</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Winery Dashboard</h1>
+    <p>Visual overview of your wine production system</p>
+  </header>
+
+  <main class="dashboard-container">
+    <section class="chart-box">
+      <h2>Wine Types Distribution</h2>
+      <canvas id="wineChart"></canvas>
+    </section>
+
+    <section class="chart-box">
+      <h2>System Overview</h2>
+      <canvas id="overviewChart"></canvas>
+    </section>
+  </main>
+
+  <script src="./JS/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  background-color: #f6f6f6;
+}
+
+header {
+  background-color: #6a1b9a;
+  color: white;
+  text-align: center;
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.container {
+  max-width: 960px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+/* כפתור עליון */
+.toolbar {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+#openFormBtn {
+  padding: 10px 18px;
+  font-size: 1em;
+  background-color: #26a69a;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#openFormBtn:hover {
+  background-color: #00897b;
+}
+
+/* טופס הוספה */
+.form-section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.form-section input, .form-section button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.form-section button {
+  background-color: #7b1fa2;
+  color: white;
+  border: none;
+  font-weight: bold;
+}
+
+.form-section button:hover {
+  background-color: #4a148c;
+}
+
+/* הסתרת הטופס */
+.hidden {
+  display: none;
+}
+
+/* טבלה */
+.table-section {
+  max-height: 500px;
+  overflow-y: auto;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95em;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background-color: #ab47bc;
+  color: white;
+  z-index: 1;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.action-btn {
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #42a5f5;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #ef5350;
+  color: white;
+  margin-left: 6px;
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Queries & Functions</title>
+  <link rel="stylesheet" href="./CSS/queries.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f8f8;
+      margin: 0;
+    }
+
+    header {
+      background-color: #6a1b9a;
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .query-box {
+      background-color: white;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .query-box h2 {
+      margin-top: 0;
+    }
+
+    .query-box input {
+      display: block;
+      margin-bottom: 10px;
+      padding: 10px;
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .query-box button {
+      background-color: #26a69a;
+      color: white;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .query-box button:hover {
+      background-color: #00796b;
+    }
+
+    .result-box {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #f1f8e9;
+      border: 1px dashed #aed581;
+      border-radius: 5px;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+
+    .top-nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background-color: #333;
+      display: flex;
+    }
+
+    .top-nav li {
+      margin: 0;
+    }
+
+    .top-nav a {
+      display: block;
+      padding: 14px 20px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .top-nav a.active, .top-nav a:hover {
+      background-color: #512da8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ניווט עליון -->
+  <nav class="top-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="finalproduct.html">Final Products</a></li>
+      <li><a href="employee.html">Employees</a></li>
+      <li><a href="production.html">Production</a></li>
+      <li><a href="queries.html" class="active">Queries</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Run Queries & Functions</h1>
+    <p>Activate business logic directly from the system</p>
+  </header>
+
+  <main class="container">
+
+    <!-- שאילתה 1 -->
+    <section class="query-box">
+      <h2>Update Wine Type by Grape Variety</h2>
+      <p>Updates the <code>winetype_</code> column in the final product based on the grape variety used in production batches that contain exactly 4 types.</p>
+      <button type="button" id="runUpdateWineType">Run Query</button>
+    </section>
+
+    <!-- שאילתה 2 -->
+    <section class="query-box">
+      <h2>Total Bottles by Grape Variety</h2>
+      <p>Returns a summary of total wine bottles produced for each grape variety, ordered by quantity.</p>
+      <button type="button" id="runBottleSummary">Run Query</button>
+      <div id="bottleSummaryResult" class="result-box"></div>
+    </section>
+
+    <!-- פונקציה -->
+    <section class="query-box">
+      <h2>Get Bottle Count for Wine Type</h2>
+      <p>Retrieves the total number of wine bottles for a specific wine type using a database function.</p>
+      <input type="text" id="wineTypeInput" placeholder="Enter wine type..." />
+      <button type="button" id="runBottleCountFunction">Run Function</button>
+      <div id="bottleCountResult" class="result-box"></div>
+    </section>
+
+    <!-- פרוצדורה -->
+    <section class="query-box">
+      <h2>Increase Prices by Supplier</h2>
+      <p>Updates product prices for a specific supplier by a given percentage using a stored procedure.</p>
+      <input type="text" id="supplierNameInput" placeholder="Supplier name..." />
+      <input type="number" id="percentInput" placeholder="Increase %..." />
+      <button type="button" id="runPriceUpdateProc">Run Procedure</button>
+    </section>
+
+  </main>
+
+  <script src="./JS/queries.js"></script>
+</body>
+</html>

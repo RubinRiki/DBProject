@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Manage Wine Products</title>
+  <link rel="stylesheet" href="./CSS/finalproduct.css" />
+</head>
+<body>
+  <header>
+    <h1>Final Products</h1>
+    <p>View and manage all wine production results</p>
+  </header>
+
+  <main class="container">
+    <div class="toolbar">
+      <button id="openFormBtn">+ Add New Product</button>
+    </div>
+
+    <section id="formWrapper" class="form-section hidden">
+      <form id="productForm">
+        <input type="number" step="0.1" id="qntityofbottle" placeholder="Quantity of Bottle" required />
+        <input type="number" id="batchnumber_" placeholder="Batch Number" required />
+        <input type="text" id="winetype_" placeholder="Wine Type" required />
+        <input type="date" id="bottlingdate_" required />
+        <input type="number" id="numbottls" placeholder="Bottle Count" required />
+        <input type="number" id="productid" placeholder="Product ID" />
+        <button type="submit">Save Product</button>
+      </form>
+    </section>
+
+    <section class="table-section">
+      <h2>Product List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Quantity</th>
+            <th>Batch #</th>
+            <th>Wine Type</th>
+            <th>Bottling Date</th>
+            <th>Bottle Count</th>
+            <th>Product ID</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="productTableBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="./JS/finalproduct.js"></script>
+</body>
+</html>

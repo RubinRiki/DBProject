@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Manage Employees</title>
+  <link rel="stylesheet" href="./CSS/employee.css" />
+</head>
+<body>
+  <nav class="top-nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="finalproduct.html">Final Products</a></li>
+      <li><a href="employee.html" class="active">Employees</a></li>
+      <li><a href="production.html">Production</a></li>
+      <li><a href="queries.html">Queries</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Employees</h1>
+    <p>View and manage winery staff</p>
+  </header>
+
+  <main class="container">
+    <!-- כפתור לפתיחת הטופס -->
+    <div class="toolbar">
+      <button id="openFormBtn">+ Add Employee</button>
+    </div>
+
+    <!-- טופס -->
+    <section id="formWrapper" class="form-section hidden">
+      <form id="employeeForm">
+        <input type="text" id="name" placeholder="Full Name" required />
+        <input type="date" id="hiredate" required />
+        <input type="number" id="role" placeholder="Role ID" required />
+        <button type="submit">Save Employee</button>
+      </form>
+    </section>
+
+    <!-- טבלה -->
+    <section class="table-section">
+      <h2>Employee List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Hire Date</th>
+            <th>Role ID</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="employeeTableBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="./JS/employee.js"></script>
+</body>
+</html>

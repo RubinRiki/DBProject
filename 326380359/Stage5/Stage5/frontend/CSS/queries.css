@@ -1,0 +1,103 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  background-color: #f6f6f6;
+}
+
+.top-nav {
+  background-color: #333;
+}
+
+.top-nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.top-nav li {
+  flex: 1;
+  text-align: center;
+}
+
+.top-nav a {
+  display: block;
+  padding: 14px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.top-nav a:hover,
+.top-nav a.active {
+  background-color: #5e35b1;
+}
+
+header {
+  text-align: center;
+  background-color: #6a1b9a;
+  color: white;
+  padding: 40px 20px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.query-box {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.query-box h2 {
+  margin-bottom: 8px;
+}
+
+.query-box p {
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+
+.query-box input {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.query-box button {
+  padding: 10px 16px;
+  background-color: #26a69a;
+  color: white;
+  border: none;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.query-box button:hover {
+  background-color: #00796b;
+}
+
+.result-box {
+  background-color: #f1f8e9;
+  padding: 12px;
+  margin-top: 10px;
+  border: 1px dashed #c5e1a5;
+  border-radius: 6px;
+  white-space: pre-wrap;
+}
