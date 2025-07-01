@@ -46,19 +46,27 @@
 
   <!-- מודל טופס -->
   <div id="formModal" class="modal hidden">
-    <div class="modal-content">
-      <h2 id="formTitle">Add Employee</h2>
-      <form id="employeeForm">
-        <input type="text" id="name" placeholder="Full Name" required />
-        <input type="date" id="hiredate" required />
-        <input type="number" id="role" placeholder="Role ID" required />
-        <div class="modal-buttons">
-          <button type="submit" class="save-btn">Save</button>
-          <button type="button" class="cancel-btn" id="cancelBtn">Cancel</button>
-        </div>
-      </form>
-    </div>
+  <div class="modal-content">
+    <h2 id="formTitle">Add Employee</h2>
+    <form id="employeeForm">
+
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Full Name" required />
+
+      <label for="hiredate">Hire Date</label>
+      <input type="date" id="hiredate" required />
+
+      <label for="role">Role ID</label>
+      <input type="number" id="role" placeholder="Role ID" required />
+
+      <div class="modal-buttons">
+        <button type="submit" class="save-btn">Save</button>
+        <button type="button" class="cancel-btn" id="cancelBtn">Cancel</button>
+      </div>
+    </form>
   </div>
+</div>
+
 
   <!-- מודל אישור מחיקה -->
   <div id="deleteModal" class="modal hidden">

@@ -142,6 +142,9 @@ canvas {
 .delete-btn:hover {
   background-color: #a73737;
 }
+.edit-btn + .delete-btn {
+  margin-left: 10px;
+}
 
 /* --------- TABLE STYLING --------- */
 .table-section {
@@ -334,6 +337,8 @@ button {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   width: 90%;
+  max-height: 80vh; 
+  overflow-y: auto; 
   max-width: 600px;
   position: relative;
 }
@@ -345,6 +350,14 @@ button {
 }
 
 .modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+.modal-content select {
   width: 100%;
   padding: 10px;
   margin: 10px 0;

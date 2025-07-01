@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const API = "http://localhost:3001/api/employees";
 
+  // === DOM Elements ===
   const formModal = document.getElementById("formModal");
   const deleteModal = document.getElementById("deleteModal");
   const openFormBtn = document.getElementById("openFormBtn");
@@ -8,14 +9,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const cancelBtn = document.getElementById("cancelBtn");
   const confirmDelete = document.getElementById("confirmDelete");
   const cancelDelete = document.getElementById("cancelDelete");
-
   const nameInput = document.getElementById("name");
   const hiredateInput = document.getElementById("hiredate");
   const roleInput = document.getElementById("role");
+  const tableBody = document.getElementById("employeeTableBody");
 
+  // === State ===
   let selectedId = null;
   let employeeToDelete = null;
 
+  // === Event Listeners ===
   openFormBtn.addEventListener("click", () => {
     resetForm();
     selectedId = null;
@@ -23,20 +26,26 @@ document.addEventListener("DOMContentLoaded", () => {
     formModal.classList.remove("hidden");
   });
 
-  cancelBtn.addEventListener("click", () => {
-    formModal.classList.add("hidden");
-  });
-
-  cancelDelete.addEventListener("click", () => {
-    deleteModal.classList.add("hidden");
-  });
+  cancelBtn.addEventListener("click", () => formModal.classList.add("hidden"));
+  cancelDelete.addEventListener("click", () => deleteModal.classList.add("hidden"));
 
   confirmDelete.addEventListener("click", async () => {
-    if (employeeToDelete !== null) {
-      await fetch(`${API}/${employeeToDelete}`, { method: "DELETE" });
-      employeeToDelete = null;
-      deleteModal.classList.add("hidden");
-      loadEmployees();
+    if (!employeeToDelete) return;
+
+    try {
+      const res = await fetch(`${API}/${employeeToDelete}`, { method: "DELETE" });
+
+      if (res.status === 500) {
+        alert("⚠️ Cannot delete employee due to production links.");
+      } else if (res.ok) {
+        employeeToDelete = null;
+        deleteModal.classList.add("hidden");
+        loadEmployees();
+      } else {
+        alert("Delete failed with status " + res.status);
+      }
+    } catch (err) {
+      console.error("Server error:", err);
     }
   });
 
@@ -49,40 +58,47 @@ document.addEventListener("DOMContentLoaded", () => {
       roleid: parseInt(roleInput.value),
     };
 
-    if (selectedId) {
-      await fetch(`${API}/${selectedId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(emp),
-      });
-    } else {
-      await fetch(API, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(emp),
-      });
-    }
+    const method = selectedId ? "PUT" : "POST";
+    const url = selectedId ? `${API}/${selectedId}` : API;
+
+    await fetch(url, {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(emp),
+    });
 
     formModal.classList.add("hidden");
     loadEmployees();
   });
 
+  // === Helpers ===
   function resetForm() {
     nameInput.value = "";
     hiredateInput.value = "";
     roleInput.value = "";
   }
 
-  window.editEmployee = function (id, name, hiredate, roleid) {
+ async function editEmployee(id) {
+  try {
+    const res = await fetch(`${API}/${id}`);
+    if (!res.ok) throw new Error("Failed to fetch employee data");
+
+    const emp = await res.json();
+
     selectedId = id;
-    nameInput.value = name;
-    hiredateInput.value = hiredate;
-    roleInput.value = roleid;
+    nameInput.value = emp.employeename;
+    hiredateInput.value = emp.hiredate?.split("T")[0] || "";
+    roleInput.value = emp.roleid;
+
     document.getElementById("formTitle").textContent = "Edit Employee";
     formModal.classList.remove("hidden");
+  } catch (err) {
+    alert("Error loading employee: " + err.message);
   }
+ }
 
-  window.promptDelete = function (id) {
+
+  function openDeleteModal(id) {
     employeeToDelete = id;
     deleteModal.classList.remove("hidden");
   }
@@ -90,22 +106,33 @@ document.addEventListener("DOMContentLoaded", () => {
   async function loadEmployees() {
     const res = await fetch(API);
     const data = await res.json();
-
-    const tableBody = document.getElementById("employeeTableBody");
     tableBody.innerHTML = "";
 
     data.forEach(emp => {
       const row = document.createElement("tr");
+
+      const editBtn = document.createElement("button");
+      editBtn.className = "edit-btn";
+      editBtn.textContent = "Edit";
+      editBtn.addEventListener("click", () => editEmployee(emp.employeeid));
+
+
+      const deleteBtn = document.createElement("button");
+      deleteBtn.className = "delete-btn";
+      deleteBtn.textContent = "Delete";
+      deleteBtn.addEventListener("click", () => openDeleteModal(emp.employeeid));
+
+      const tdActions = document.createElement("td");
+      tdActions.appendChild(editBtn);
+      tdActions.appendChild(deleteBtn);
+
       row.innerHTML = `
         <td>${emp.employeeid}</td>
         <td>${emp.employeename}</td>
         <td>${emp.hiredate ? new Date(emp.hiredate).toLocaleDateString() : ''}</td>
         <td>${emp.roleid}</td>
-        <td>
-          <button class="edit-btn" onclick="editEmployee(${emp.employeeid}, ${JSON.stringify(emp.employeename)}, '${emp.hiredate}', ${emp.roleid})">Edit</button>
-          <button class="delete-btn" onclick="promptDelete(${emp.employeeid})">Delete</button>
-        </td>
       `;
+      row.appendChild(tdActions);
       tableBody.appendChild(row);
     });
   }

@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const [employeesRes, productsRes, processesRes] = await Promise.all([
     fetch("http://localhost:3001/api/employees"),
     fetch("http://localhost:3001/api/finalproducts"),
-    fetch("http://localhost:3001/api/productionprocesses")
+    fetch("http://localhost:3001/api/production")
   ]);
 
   const employees = await employeesRes.json();
@@ -33,6 +33,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       wineCounts[type]++;
     }
   });
+
+  console.log("Wine counts:", wineCounts);
 
   // --- Count unique wine types for overview ---
   const uniqueTypes = new Set(products.map(p => p.winetype_));

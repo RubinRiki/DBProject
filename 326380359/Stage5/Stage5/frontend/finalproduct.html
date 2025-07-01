@@ -37,7 +37,6 @@
             <th>Wine Type</th>
             <th>Bottling Date</th>
             <th>Bottle Count</th>
-            <th>Product ID</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -47,23 +46,34 @@
   </main>
 
   <!-- מודל טופס -->
-  <div id="formModal" class="modal hidden">
-    <div class="modal-content">
-      <h2 id="formTitle">Add Product</h2>
-      <form id="productForm">
-        <input type="number" step="0.1" id="qntityofbottle" placeholder="Quantity of Bottle" required />
-        <input type="number" id="batchnumber_" placeholder="Batch Number" required />
-        <input type="text" id="winetype_" placeholder="Wine Type" required />
-        <input type="date" id="bottlingdate_" required />
-        <input type="number" id="numbottls" placeholder="Bottle Count" required />
-        <input type="number" id="productid" placeholder="Product ID" />
-        <div class="modal-buttons">
-          <button type="submit" class="save-btn">Save</button>
-          <button type="button" class="cancel-btn" id="cancelBtn">Cancel</button>
-        </div>
-      </form>
-    </div>
+ <div id="formModal" class="modal hidden">
+  <div class="modal-content">
+    <h2 id="formTitle">Add Product</h2>
+    <form id="productForm">
+
+      <label for="qntityofbottle">Quantity of Bottle</label>
+      <input type="number" step="0.1" id="qntityofbottle" placeholder="Quantity of Bottle" required />
+
+      <label for="batchnumber_">Batch Number</label>
+      <input type="number" id="batchnumber_" placeholder="Batch Number" required />
+
+      <label for="winetype_">Wine Type</label>
+      <input type="text" id="winetype_" placeholder="Wine Type" required />
+
+      <label for="bottlingdate_">Bottling Date</label>
+      <input type="date" id="bottlingdate_" required />
+
+      <label for="numbottls">Bottle Count</label>
+      <input type="number" id="numbottls" placeholder="Bottle Count" required />
+
+      <div class="modal-buttons">
+        <button type="submit" class="save-btn">Save</button>
+        <button type="button" class="cancel-btn" id="cancelBtn">Cancel</button>
+      </div>
+    </form>
   </div>
+</div>
+
 
   <!-- מודל אישור מחיקה -->
   <div id="deleteModal" class="modal hidden">

@@ -1,10 +1,10 @@
 const { Pool } = require("pg");
 
 const pool = new Pool({
-  user: "postgres",
+  user: "riki",
   host: "localhost",
-  database: "minip", // כאן נכניס את שם בסיס הנתונים
-  password: "a327519161", // ופה תכניסי את הסיסמה שלך (אם יש)
+  database: "mydatabase", // כאן נכניס את שם בסיס הנתונים
+  password: "1234", // ופה תכניסי את הסיסמה שלך (אם יש)
   port: 5432,
 });
 
