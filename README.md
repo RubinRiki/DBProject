@@ -579,7 +579,7 @@ Alerts מותאמים במקרי שגיאה.
 שגיאות בצד הלקוח: כל fetch עטוף ב־try/catch, כולל תמיכה בהתראות למשתמש.
 
 🖼️ תמונות מסך של הפעלת האפליקציה
-<img src="/Stage5/img/HOME1.JPG" width="300"/> <img src="/Stage5/img/HOME2.JPG" width="300"/>
+<img src="326380359_327519161/Stage5/img/HOME1.JPG" width="300"/> <img src="/Stage5/img/HOME2.JPG" width="300"/>
 <img src="/Stage5/img/PRODUCT1.JPG.JPG" width="300"/> <img src="/Stage5/img/PRODUCT2.JPG.JPG" width="300">
 <img src="/Stage5/img/EMPL1.JPG.JPG" width="300"/> <img src="/Stage5/img/EMPL2.JPG.JPG" width="300"/>
 <img src="/Stage5/img/PROS1.JPG.JPG" width="300"/> <img src="/Stage5/img/PROS2.JPG.JPG" width="300"/>
