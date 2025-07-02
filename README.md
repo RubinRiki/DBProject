@@ -580,10 +580,10 @@ Alerts מותאמים במקרי שגיאה.
 
 🖼️ תמונות מסך של הפעלת האפליקציה
 <img src="326380359_327519161/Stage5/img/HOME1.JPG" width="300"/> <img src="326380359_327519161/Stage5/img/HOME2.JPG" width="300"/>
-<img src="326380359_327519161/Stage5/img/PRODUCT1.JPG.JPG" width="300"/> <img src="326380359_327519161/Stage5/img/PRODUCT2.JPG.JPG" width="300">
-<img src="326380359_327519161/Stage5/img/EMPL1.JPG.JPG" width="300"/> <img src="326380359_327519161/Stage5/img/EMPL2.JPG.JPG" width="300"/>
-<img src="326380359_327519161/Stage5/img/PROS1.JPG.JPG" width="300"/> <img src="326380359_327519161/Stage5/img/PROS2.JPG.JPG" width="300"/>
-<img src="326380359_327519161/Stage5/img/Q1.JPG.JPG" width="300"/> <img src="326380359_327519161/Stage5/img/Q2.JPG.JPG" width="300"/>
+<img src="326380359_327519161/Stage5/img/PRODUCT1.JPG" width="300"/> <img src="326380359_327519161/Stage5/img/PRODUCT2.JPG" width="300">
+<img src="326380359_327519161/Stage5/img/EMPL1.JPG" width="300"/> <img src="326380359_327519161/Stage5/img/EMPL2.JPG" width="300"/>
+<img src="326380359_327519161/Stage5/img/PROS1.JPG" width="300"/> <img src="326380359_327519161/Stage5/img/PROS2.JPG" width="300"/>
+<img src="326380359_327519161/Stage5/img/Q1.JPG" width="300"/> <img src="326380359_327519161/Stage5/img/Q2.JPG" width="300"/>
 
 
 
